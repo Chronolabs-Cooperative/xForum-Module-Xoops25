@@ -1,0 +1,102 @@
+<div class="dropdown">
+<{if $menumode eq 0}>
+
+	<select
+		name="mainoption" id="mainoption"
+		class="menu"
+		onchange="if(this.options[this.selectedIndex].value.length >0 )	{ window.document.location=this.options[this.selectedIndex].value;}"
+	>
+		<option value=""><{$smarty.const._MD_MAINFORUMOPT}></option>
+		<option value="<{$mark_read}>"><{$smarty.const._MD_MARK_ALL_FORUMS}>&nbsp;<{$smarty.const._MD_MARK_READ}></option>
+		<option value="<{$mark_unread}>"><{$smarty.const._MD_MARK_ALL_FORUMS}>&nbsp;<{$smarty.const._MD_MARK_UNREAD}></option>
+		<option value="">--------</option>
+		<option value="<{$post_link}>"><{$smarty.const._MD_VIEW}>&nbsp;<{$smarty.const._MD_ALLPOSTS}></option>
+		<option value="<{$newpost_link}>"><{$smarty.const._MD_VIEW}>&nbsp;<{$smarty.const._MD_NEWPOSTS}></option>
+		<option value="<{$all_link}>"><{$smarty.const._MD_VIEW}>&nbsp;<{$smarty.const._MD_ALL}></option>
+		<option value="<{$digest_link}>"><{$smarty.const._MD_VIEW}>&nbsp;<{$smarty.const._MD_DIGEST}></option>
+		<option value="<{$unreplied_link}>"><{$smarty.const._MD_VIEW}>&nbsp;<{$smarty.const._MD_UNREPLIED}></option>
+		<option value="<{$unread_link}>"><{$smarty.const._MD_VIEW}>&nbsp;<{$smarty.const._MD_UNREAD}></option>
+		<{if $viewer_level == 2}>
+		<option value="">--------</option>
+		<option value="<{$pending_link}>"><{$smarty.const._MD_VIEW}>&nbsp;<{$smarty.const._MD_PENDING}></option>
+		<option value="<{$deleted_link}>"><{$smarty.const._MD_VIEW}>&nbsp;<{$smarty.const._MD_DELETED}></option>
+		<{/if}>		
+		<option value="">--------</option>
+		<{foreach item=menu from=$menumode_other}>
+		<option value="<{$menu.link}>"><{$menu.title}></option>
+		<{/foreach}>
+		<{if $forum_index_cpanel}>
+		<option value="">--------</option>
+		<option value="<{$forum_index_cpanel.link}>"><{$forum_index_cpanel.name}></option>
+		<{/if}>
+	</select>
+
+<{elseif $menumode eq 1}>
+	<div id="mainoption" class="menu">
+	<table><tr><td>
+		<a class="item" href="<{$mark_read}>"><{$smarty.const._MD_MARK_ALL_FORUMS}>&nbsp;<{$smarty.const._MD_MARK_READ}></a>
+		<a class="item" href="<{$mark_unread}>"><{$smarty.const._MD_MARK_ALL_FORUMS}>&nbsp;<{$smarty.const._MD_MARK_UNREAD}></a>
+		<div class="separator"></div>
+		<a class="item" href="<{$post_link}>"><{$smarty.const._MD_VIEW}>&nbsp;<{$smarty.const._MD_ALLPOSTS}></a>
+		<a class="item" href="<{$newpost_link}>"><{$smarty.const._MD_VIEW}>&nbsp;<{$smarty.const._MD_NEWPOSTS}></a>
+		<a class="item" href="<{$all_link}>"><{$smarty.const._MD_VIEW}>&nbsp;<{$smarty.const._MD_ALL}></a>
+		<a class="item" href="<{$digest_link}>"><{$smarty.const._MD_VIEW}>&nbsp;<{$smarty.const._MD_DIGEST}></a>
+		<a class="item" href="<{$unreplied_link}>"><{$smarty.const._MD_VIEW}>&nbsp;<{$smarty.const._MD_UNREPLIED}></a>
+		<a class="item" href="<{$unread_link}>"><{$smarty.const._MD_VIEW}>&nbsp;<{$smarty.const._MD_UNREAD}></a>
+		<{if $viewer_level == 2}>
+		<div class="separator"></div>
+		<a class="item" href="<{$pending_link}>"><{$smarty.const._MD_VIEW}>&nbsp;<{$smarty.const._MD_PENDING}></a>
+		<a class="item" href="<{$deleted_link}>"><{$smarty.const._MD_VIEW}>&nbsp;<{$smarty.const._MD_DELETED}></a>
+		<{/if}>	
+		<div class="separator"></div>
+		<{foreach item=menu from=$menumode_other}>
+		<a class="item" href="<{$menu.link}>"><{$menu.title}></a>
+		<{/foreach}>
+		<{if $forum_index_cpanel}>
+		<div class="separator"></div>
+		<a class="item" href="<{$forum_index_cpanel.link}>"><{$forum_index_cpanel.name}></a>
+		<{/if}>
+	</td></tr></table>
+	</div>
+	<script type="text/javascript">document.getElementById("mainoption").onmouseout = closeMenu;</script>
+	<div class="menubar"><a href="" onclick="openMenu(event, 'mainoption');return false;"><{$smarty.const._MD_MAINFORUMOPT}></a></div>
+
+<{elseif $menumode eq 2}>
+
+	<div class="menu">
+		<ul>
+			<li>
+				<div class="item"><strong><{$smarty.const._MD_MAINFORUMOPT}></strong></div>
+				<ul>
+				<li><table><tr><td>
+					<div class="item"><a href="<{$mark_read}>"><{$smarty.const._MD_MARK_ALL_FORUMS}>&nbsp;<{$smarty.const._MD_MARK_READ}></a></div>
+					<div class="item"><a href="<{$mark_unread}>"><{$smarty.const._MD_MARK_ALL_FORUMS}>&nbsp;<{$smarty.const._MD_MARK_UNREAD}></a></div>
+					<div class="separator"></div>
+					<div class="item"><a href="<{$post_link}>"><{$smarty.const._MD_VIEW}>&nbsp;<{$smarty.const._MD_ALLPOSTS}></a></div>
+					<div class="item"><a href="<{$newpost_link}>"><{$smarty.const._MD_VIEW}>&nbsp;<{$smarty.const._MD_NEWPOSTS}></a></div>
+					<div class="item"><a href="<{$all_link}>"><{$smarty.const._MD_VIEW}>&nbsp;<{$smarty.const._MD_ALL}></a></div>
+					<div class="item"><a href="<{$digest_link}>"><{$smarty.const._MD_VIEW}>&nbsp;<{$smarty.const._MD_DIGEST}></a></div>
+					<div class="item"><a href="<{$unreplied_link}>"><{$smarty.const._MD_VIEW}>&nbsp;<{$smarty.const._MD_UNREPLIED}></a></div>
+					<div class="item"><a href="<{$unread_link}>"><{$smarty.const._MD_VIEW}>&nbsp;<{$smarty.const._MD_UNREAD}></a></div>
+					<{if $viewer_level == 2}>
+					<div class="separator"></div>
+					<div class="item"><a href="<{$pending_link}>"><{$smarty.const._MD_VIEW}>&nbsp;<{$smarty.const._MD_PENDING}></a></div>
+					<div class="item"><a href="<{$deleted_link}>"><{$smarty.const._MD_VIEW}>&nbsp;<{$smarty.const._MD_DELETED}></a></div>
+					<{/if}>	
+					<div class="separator"></div>
+					<{foreach item=menu from=$menumode_other}>
+					<div class="item"><a href="<{$menu.link}>"><{$menu.title}></a></div>
+					<{/foreach}>
+					<{if $forum_index_cpanel}>
+					<div class="separator"></div>
+					<div class="item"><a href="<{$forum_index_cpanel.link}>"><{$forum_index_cpanel.name}></a></div>
+					<{/if}>
+				</td></tr></table></li>
+				</ul>
+			</li>
+		</ul>
+	</div>
+<{/if}>
+</div>
+<br clear="all" />
+<br clear="all" />

@@ -1,0 +1,237 @@
+<div id="index_welcome">
+	<div class="title"><a href="<{$xoops_url}>/modules/xforum/"><{$lang_welcomemsg}></a></div>
+	<div class="desc"><{$smarty.const._MD_TOSTART}></div>
+	<div class="visit"><{$lang_currenttime}>
+		<br /><{$lang_lastvisit}>
+		<br /><{$smarty.const._MD_TOTALTOPICSC}><strong><{$total_topics}></strong> | <{$smarty.const._MD_TOTALPOSTSC}><strong><{$total_posts}></strong>
+	</div>
+</div>
+
+<link rel="stylesheet" type="text/css" href="xforum.css">
+<{include file='db:xforum_dropdown_menu.html'}>
+
+<!-- start forum categories -->
+<{foreach item=category from=$categories}>
+<div style="height:0.3em; clear:both">&nbsp;</div>
+<table cellpadding="0" cellspacing="0">
+<tr>
+	<td background="images/brdr-tlc.png" class="tbl-brdr-tlc" width="15px" height="15px"></td>
+	<td background="images/brdr-top.png" class="tbl-brdr-top"></td>
+	<td background="images/brdr-trc.png" class="tbl-brdr-trc" width="15px" height="15px"></td>        
+</tr>
+<tr>
+	<td background="images/brdr-left.png" class="tbl-brdr-left"></td>
+	<td>
+    <table class="index_category" cellspacing="0" width="100%">
+        <tr class="head">
+            <td width="<{if $category.cat_image}>7%<{else}>0%<{/if}>" align="center" valign="middle"><{if $category.cat_image}><img src="<{$category.cat_image}>" alt="<{$category.cat_title}>" /><{else}>&nbsp;<{/if}></td>
+            <{if $category.cat_image}>            <{/if}>
+            <td width="90%" align="left">
+          <a href="<{$category.cat_url}>"><{$category.cat_title}></a><br />
+          <{$category.cat_description}><br />
+          <a href="<{$category.cat_sponsor.link}>" title="<{$category.cat_sponsor.title}>" target="_blank"><{$category.cat_sponsor.title}></a></td>
+          <td width="10%" align="center" valign="middle" nowrap="nowrap">
+            <img style="position:relative; top:10px;" onclick="ToggleBlock2('cat_<{$category.cat_id}>', this)" src="<{$category.cat_display_icon}>" alt="" />            
+          </td>
+		</tr>
+    </table>
+
+<div id="cat_<{$category.cat_id}>" style="display: <{$category.cat_display}>">
+<table cellspacing="1" width="100%">
+<{if $category.forums}>
+    <tr class="head" align="center">
+		<td width="5%">&nbsp;</td>
+		<{if $subforum_display == "expand"}>
+		<td colspan="2" width="57%" nowrap="nowrap" align="left"><{$smarty.const._MD_XFORUM}></td>
+		<{else}>
+		<td width="57%" nowrap="nowrap" align="left"><{$smarty.const._MD_XFORUM}></td>
+		<{/if}>
+		<td width="9%" nowrap="nowrap"><{$smarty.const._MD_TOPICS}></td>
+		<td width="9%" nowrap="nowrap"><{$smarty.const._MD_POSTS}></td>
+		<td width="20%" nowrap="nowrap"><{$smarty.const._MD_LASTPOST}></td>
+    </tr>
+<{/if}>
+
+<!-- start forums -->
+
+<{if $subforum_display == "expand"}>
+
+<{foreach item=forum from=$category.forums}>
+    <tr>
+      <td class="even" align="center" valign="middle"><{$forum.forum_folder}></td>
+      <td colspan="2" class="odd">
+		<div id="index_forum">
+	      	<span class="item"><a href="<{$forum.forum_url}>"><{$forum.forum_name}></a>
+	      	<{if $rss_enable}>
+			<a href="<{$forum.forum_url_rss}>" target="_blank" title="RSS feed"><img src="<{$xoops_url}>/modules/xforum/images/rss-small.gif"></a>
+			<{/if}>
+	      	<br /><{$forum.forum_desc}>
+	      	</span>
+			<{if $forum.forum_moderators}>
+			<span class="extra">
+        	<{$smarty.const._MD_MODERATOR}>: <{$forum.forum_moderators}>
+        	</span>
+        	<{/if}>
+        </div>
+      </td>
+      <td class="even" align="center" valign="middle"><{$forum.forum_topics}> </td>
+      <td class="odd" align="center" valign="middle"><{$forum.forum_posts}> </td>
+      <td class="even" align="right" valign="middle"><{$forum.forum_lastpost_time}> <br />
+		<{$forum.forum_lastpost_icon}> <br />
+		<{$forum.forum_lastpost_user}>
+	  </td>
+    </tr>
+<{if $forum.subforum}>
+    <tr class="head" >
+      <td width="5%">&nbsp;</td>
+      <td width="5%" align="center"><{$img_subforum}>&nbsp;</td>
+      <td colspan="4" nowrap="nowrap" align="left"><{$smarty.const._MD_SUBFORUMS}></td>
+    </tr>
+<{foreach item=subforum from=$forum.subforum}>
+    <tr>
+      <td class="odd" width="5%">&nbsp;</td>
+      <td class="even" align="center" valign="middle" width="5%"><{$subforum.forum_folder}></td>
+      <td width="52%" class="odd">
+		<div id="index_forum">
+	      	<span class="item"><a href="<{$subforum.forum_url}>"><strong><{$subforum.forum_name}></strong></a>
+	      	<{if $rss_enable}>
+			<a href="<{$subforum.forum_url_rss}>" target="_blank" title="RSS feed"><img src="<{$xoops_url}>/modules/xforum/images/rss-small.gif"></a>
+			<{/if}>
+	      	<br /><{$subforum.forum_desc}>
+	      	</span>
+			<{if $subforum.forum_moderators}>
+			<span class="extra">
+        	<{$smarty.const._MD_MODERATOR}>: <{$subforum.forum_moderators}>
+        	</span>
+        	<{/if}>
+        </div>
+	  </td>
+      <td class="even" width="9%" align="center" valign="middle"><{$subforum.forum_topics}> </td>
+      <td class="odd" width="9%" align="center" valign="middle"><{$subforum.forum_posts}> </td>
+      <td class="even" width="20%" align="right" valign="middle"><{$subforum.forum_lastpost_time}> <br />
+		<{$subforum.forum_lastpost_icon}> <br />
+		<{$subforum.forum_lastpost_user}>
+	  </td>
+   </tr>
+<{/foreach}>
+<{/if}>
+
+
+<{/foreach}>
+
+<{elseif $subforum_display == "collapse"}>
+
+<{foreach item=forum from=$category.forums}>
+	<tr>
+		<{if $forum.subforum}>
+      	<td class="even" rowspan="2" align="center" valign="middle"><{$forum.forum_folder}></td>
+		<{else}>
+      	<td class="even" align="center" valign="middle"><{$forum.forum_folder}></td>
+		<{/if}>
+      	<td class="odd">
+		<div id="index_forum">
+	      	<span class="item"><a href="<{$forum.forum_url}>"><{$forum.forum_name}></a>
+	      	<{if $rss_enable}>
+			<a href="<{$forum.forum_url_rss}>" target="_blank" title="RSS feed"><img src="<{$xoops_url}>/modules/xforum/images/rss-small.gif"></a>
+			<{/if}>
+	      	<br /><{$forum.forum_desc}>
+	      	</span>
+			<{if $forum.forum_moderators}>
+			<span class="extra">
+        	<{$smarty.const._MD_MODERATOR}>: <{$forum.forum_moderators}>
+        	</span>
+        	<{/if}>
+        </div>
+        </td>
+      	<td class="even" align="center" valign="middle"><{$forum.forum_topics}> </td>
+      	<td class="odd" align="center" valign="middle"><{$forum.forum_posts}> </td>
+      	<td class="even" align="right" valign="middle"><{$forum.forum_lastpost_time}> <br />
+			<{$forum.forum_lastpost_icon}> <br />
+			<{$forum.forum_lastpost_user}>  </td>
+    </tr>
+	<{if $forum.subforum}>
+    <tr>
+     	<td class="odd" colspan="4" align="left"><{$smarty.const._MD_SUBFORUMS}>&nbsp;<{$img_subforum}>&nbsp;
+			<{foreach item=subforum from=$forum.subforum}>
+            <{if $subforum.forum_permission}>
+			&nbsp;[<a href="<{$subforum.forum_url}>"><{$subforum.forum_name}></a>]
+            <{/if}>
+			<{/foreach}>
+		</td>
+	</tr>
+	<{/if}>
+<{/foreach}>
+
+<{else}>
+
+<{foreach item=forum from=$category.forums}>
+	<tr>
+      	<td class="even" align="center" valign="middle"><{$forum.forum_folder}></td>
+      	<td class="odd">
+		<div id="index_forum">
+	      	<span class="item"><a href="<{$forum.forum_url}>"><{$forum.forum_name}></a>
+	      	<{if $rss_enable}>
+			<a href="<{$forum.forum_url_rss}>" target="_blank" title="RSS feed"><img src="<{$xoops_url}>/modules/xforum/images/rss-small.gif"></a>
+			<{/if}>
+	      	<br /><{$forum.forum_desc}>
+	      	</span>
+			<{if $forum.forum_moderators}>
+			<span class="extra">
+        	<{$smarty.const._MD_MODERATOR}>: <{$forum.forum_moderators}>
+        	</span>
+        	<{/if}>
+        </div>
+        </td>
+      	<td class="even" align="center" valign="middle"><{$forum.forum_topics}> </td>
+      	<td class="odd" align="center" valign="middle"><{$forum.forum_posts}> </td>
+      	<td class="even" align="right" valign="middle"><{$forum.forum_lastpost_time}> <br />
+			<{$forum.forum_lastpost_icon}> <br />
+			<{$forum.forum_lastpost_user}>
+		</td>
+    </tr>
+<{/foreach}>
+
+<{/if}>
+  <!-- end forums -->
+</table>
+</div>
+   </td>
+   <td background="images/brdr-right.png" class="tbl-brdr-right"></td>
+</tr>
+<tr>
+	<td background="images/brdr-blc.png" class="tbl-brdr-blc" width="15px" height="15px"></td>
+	<td background="images/brdr-bottom.png" class="tbl-brdr-bottom"></td>
+	<td background="images/brdr-brc.png" class="tbl-brdr-brc" width="15px" height="15px"></td>        
+</tr>
+</table>
+<{/foreach}>
+<!-- end forum categories -->
+
+<br clear="all" />
+<div style="float: left; text-align: left;">
+	<{$img_hotfolder}> = <{$smarty.const._MD_NEWPOSTS}><br />
+	<{$img_folder}> = <{$smarty.const._MD_NONEWPOSTS}><br />
+	<{$img_locked_newposts}> = <{$smarty.const._MD_INACTIVEFORUM_NEWPOSTS}><br />
+	<{$img_locked_nonewposts}> = <{$smarty.const._MD_INACTIVEFORUM_NONEWPOSTS}>
+</div>
+<div style="float: right; text-align: right;">
+	<form action="<{$xoops_url}>/modules/xforum/search.php" method="post" name="search" id="search">
+        <input name="term" id="term" type="text" size="20" />
+        <input type="hidden" name="forum" id="forum" value="all" />
+        <input type="hidden" name="sortby" id="sortby" value="p.post_time desc" />
+        <input type="hidden" name="searchin" id="searchin" value="both" />
+        <input type="submit" name="submit" id="submit" value="<{$smarty.const._MD_SEARCH}>" />
+        <br />
+        [ <a href="<{$xoops_url}>/modules/xforum/search.php"><{$smarty.const._MD_ADVSEARCH}></a> ]
+	</form>
+</div>
+
+<br clear="all" />
+<div><div style="float:left; text-align:left; padding-top:5px;"><a href="<{$xoops_url}>/modules/xforum/rss.php?r=0"><img src="<{$xoops_url}>/modules/xforum/images/rss-a.png"></a></div>
+<div style="float:right;text-align:right;padding-top: 5px;"><a href="http://www.chronolabs.coop/modules/smartsection/item.php?itemid=71"><img src="<{$xoops_url}>/modules/xforum/images/xforum.png" alt="Powered by X-Forum" /></a></div>
+<div style="float:right;text-align:right;padding-top: 5px; padding-right: 5px;"><a href="http://www.xoops.org/"><img src="<{$xoops_url}>/modules/xforum/images/category/topxoops.png" alt="Top Xoops" /></a></div></div>
+<br />
+<br />
+<{if $online}><{include file='db:xforum_online.html'}><{/if}>
+<{include file='db:system_notification_select.html'}>
+<!-- end module contents -->

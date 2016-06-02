@@ -1,0 +1,15 @@
+<{foreach item=topic from=$block.topics}>
+<div><strong><a href="<{$xoops_url}>/modules/xforum/viewtopic.php?forum=<{$topic.forum_id}>&amp;post_id=<{$topic.post_id}>#forumpost<{$topic.post_id}>"><{$topic.title}></a></strong></div>
+<div>
+<a href="<{$xoops_url}>/modules/xforum/viewforum.php?forum=<{$topic.forum_id}>"><{$topic.forum_name}></a> 
+<{$topic.topic_poster}> <{$topic.time}>
+</div>
+<div style="padding: 5px 0px 10px 0px;"><{$topic.post_text}></div>
+<{/foreach}>
+
+<{if $block.indexNav}>
+<div style="text-align:right; padding: 5px;">
+<a href="<{$xoops_url}>/modules/xforum/viewpost.php"><{$smarty.const._MB_XFORUM_ALLPOSTS}></a> |
+<a href="<{$xoops_url}>/modules/xforum/"><{$smarty.const._MB_XFORUM_VSTFRMS}></a>
+</div>
+<{/if}>

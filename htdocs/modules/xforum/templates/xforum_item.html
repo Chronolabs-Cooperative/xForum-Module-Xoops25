@@ -1,0 +1,41 @@
+<div style="padding: 5px;">
+
+<a id="forumpost<{$topic_post.post_id}>"></a>
+
+<div class="head" style="padding:5px;">
+<a href="<{$xoops_url}>/modules/xforum/viewtopic.php?post_id=<{$topic_post.post_id}>#forumpost<{$topic_post.post_id}>">#<{$topic_post.post_no}></a> 
+<{$topic_post.post_title}>
+<div style="float:right; padding: 5px 5px 5px 5px;"><a href="<{$xoops_url}>/modules/xforum/makepdf.php?post_id=<{$topic_post.post_id}>&amp;forum=<{$topic_post.forum_id}>&amp;topic_id=<{$topic_post.topic_id}>"><img src='<{$xoops_url}>/modules/xforum/images/pdf-a.png'></a></div>
+</div>
+
+<div class="even">
+<{$topic_post.poster.link}>
+<{if $topic_post.poster_ip}>
+IP: <a href="http://www.whois.sc/<{$topic_post.poster_ip}>" target="_blank"><{$topic_post.poster_ip}></a>
+<{/if}> 
+<{$smarty.const._MD_POSTEDON}> <{$topic_post.post_date}>
+</div>
+
+<{if $topic_post.visiblefields}>
+<{foreach item=data from=$topic_post.visiblefields}>
+<{if $data.value}>
+  <div class="<{cycle value="even,odd"}>">
+      <div style='float:left;'><strong><{$data.title}></strong></div>
+      <div style='float:right;'><{$data.value}></div>
+  </div>
+<{/if}>
+<{/foreach}>
+<{/if}>   
+ 
+<div class="odd" style="padding:5px;"><{$topic_post.post_text}></div>
+<{if $topic_post.post_attachment}>
+<div class="odd" style="padding:5px;"><{$topic_post.post_attachment}>
+</div>
+<{/if}>
+
+<div class="foot">
+<{foreach item=btn from=$topic_post.thread_buttons}> <a href="<{$btn.link}>&amp;post_id=<{$topic_post.post_id}>" title="<{$btn.name}>"> <{$btn.image}></a> <{/foreach}>
+<a href="#threadtop" title="<{$smarty.const._MD_UP}>"> <{$p_up}></a>
+</div>
+
+</div>

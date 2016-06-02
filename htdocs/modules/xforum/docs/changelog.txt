@@ -1,0 +1,41 @@
+========================================
+ 2012/03/04 06:55:00 Version 5.84 STABLE
+========================================
+ - Changes class/category.php use of XOOPS_URL when multisite module isn't enabled in getURLS (wishcraft)
+ - Changes class/forum.php use of XOOPS_URL when multisite module isn't enabled in getURLS (wishcraft)
+ - Changes class/forum.php function getURL() implementation of $start = $_GET['start'] (wishcraft)
+ - Changes class/posts.php use of XOOPS_URL when multisite module isn't enabled in getURLS (wishcraft)
+ - Changes class/topic.php use of XOOPS_URL when multisite module isn't enabled in getURLS (wishcraft)
+ 
+========================================
+ 2012/01/19 21:28:00 Version 5.83 STABLE
+========================================
+ - Changed $GLOBALS['xoopsModule'] in module renamed to $GLOBALS['xforumModule'] [admin_header.php] (Wishcraft)
+ - Changed $GLOBALS['xoopsModuleConfig'] in module renamed to $GLOBALS['xforumModuleConfig'] [admin_header.php] (Wishcraft)
+ - Changed all global $var1, $var2 to $GLOBALS['var1'] & $GLOBALS['var2'] [all files] (Wishcraft)
+ - Changed User System Menu [xoops_version.php] (Wishcraft)
+ - Changed Form referer changed to filename from old filename [admin_field_permission.php] (Wishcraft)
+ - Changed Form referer changed to filename from old filename [admin_field_visibility.php] (Wishcraft)
+ - Changed Form dashboard second call of xoops_cp_header() removed [admin_dashboard.php] (Wishcraft)
+ - Changed Form $_REQUEST['op'] to call of $_GET['op'] then if not set $_POST['op'] [all admin files] (Wishcraft)
+ - Changed Function name from _forum_ to _xforum_ so no conflict with parralell CBB [forum_block.php] (Wishcraft)
+ - Moved all .css to /language/english for RTL and LTR languages [all *.css] (Wishcraft)
+ - Fixed Multifielding field displaying in forums that do not have fields [post.php] (Wishcraft)
+ 
+========================================
+ 2011/11/15 22:17:00 Version 5.81 STABLE
+========================================
+ - Changed $GLOBALS['wflinksModule'] in module renamed to $GLOBALS['xforumModule'] [admin_header.php] (Wishcraft)
+ - Changed $GLOBALS['wflinksModuleConfig'] in module renamed to $GLOBALS['xforumModuleConfig'] [admin_header.php] (Wishcraft)
+ - Changed forum_admin_getPathStatus() - path set to urlencode() function for support of URL [admin.functions.php] (Wishcraft)
+ 
+========================================
+ 2011/11/15 22:17:00 Version 5.80 STABLE
+========================================
+ - Changed $pathImageAdmin renamed to $GLOBALS['xforumImageAdmin']  (Wishcraft)
+ - Changed $pathImageIcon renamed to $GLOBALS['xforumImageIcon']  (Wishcraft)
+ - Changed $GLOBALS['xforumModule'] in module renamed to $GLOBALS['xforumModule'] (Wishcraft)
+ - Changed $GLOBALS['xforumModuleConfig'] in module renamed to $GLOBALS['xforumModuleConfig'] (Wishcraft)
+ - Changed XOOPS 2.5.x Admin GUI  (Wishcraft)
+ - Changed XOOPS 2.5.x Admin GUI Language Constants for Statistics language/english/admin.php  (Wishcraft)
+ - Removed Warnings & Notices in Admin and User Interfaces (wishcraft)
